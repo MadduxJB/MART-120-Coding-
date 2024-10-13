@@ -1,0 +1,70 @@
+
+body{
+	background-image: url("Website_Background.jpg");
+}
+
+
+.title
+{
+    font-family:'Franklin Gothic Medium';
+    font-size:50px;
+    color:purple;
+    text-decoration:underline;
+}
+
+
+h5{
+    font-family: 'Salina';
+    color: Navy; 
+    font-size:20px; 
+}
+
+ 
+
+h3{
+   color: yellow;
+   font-size:24px;
+   text-decoration: underline;
+ 
+
+}
+
+a:hover{
+    text-decoration: underline;
+}
+
+p{
+  font-size:18px;
+  color: chocolate;
+}
+
+.art
+{
+   font-size:32;
+   text-decoration:underline;
+   color: purple;
+}
+
+#home{
+    color:blue;
+}
+
+#contact{
+    color:blue;
+}
+
+
+.button {
+    color: #000000;
+    text-decoration: none;
+    background-color: #FFFFFF;
+    border: 1px solid #000000;
+    border-radius: 30px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-top: 16px;
+	float: left;
+   
+}
