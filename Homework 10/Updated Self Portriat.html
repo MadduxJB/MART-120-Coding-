@@ -1,0 +1,156 @@
+<html>
+    <head>
+        <title>Self Portriat!</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>
+    
+    
+   <script>
+
+        //Variables
+       
+        /*
+        text varibles
+        */
+        var size = 22;
+        var count = 0;
+        var sizeDirection = 2;
+   
+        //Eye Varibles
+        var eyesX = 250
+        var eyesY = 290
+        var eyesDirection = 3;
+        var eyesX2 = 217
+        var eyesY2 = 290
+        var eyesDirection2 = 3;
+
+        //Soccer Ball Varibles
+        var ballX = 350;
+        var ballY = 580;
+        var diameter = 50;
+        var ballDirection= 1;
+     
+        let x = 320;
+        let y = 180;
+        let xspeed = 5;
+        let yspeed = 2;
+
+        let r = 25;
+
+        function setup()
+      {
+        createCanvas(500, 635);
+         movement = floor(random() *10);
+      }
+
+      function draw()
+      {
+        //Background
+        background(10,15,250);
+        fill(60,179,113);
+        strokeWeight(1);
+        rect(1,595,550,550);
+        fill(0,0,0);
+        
+        //Shoes&Legs
+        ellipse(160,595,50,35);
+        ellipse(275,595,50 ,35);
+        strokeWeight(22.5);
+        fill(100, 100, 100);
+        line(280, 595, 240, 450);
+        line(165, 595, 240, 450);
+        strokeWeight(15)
+        
+        //Arms&Chest
+        line(190, 455, 225, 360);
+        line(280, 455, 255, 360);
+        fill(178,34,34);
+        strokeWeight(2);
+        rect(220,340,35,125);
+        strokeWeight(1);
+        fill(139, 69, 19)
+        
+        //Hair
+        triangle(233,270,260,235,280,285);
+        triangle(230,270,250,235,270,270);
+        triangle(220,270,240,235,260,270);
+        triangle(210,270,230,235,250,270);
+        triangle(200,270,220,235,240,270);
+        triangle(197,270,210,235,230,270);
+       
+        //Face
+        strokeWeight(2);
+        fill(245, 222, 179);
+        circle(235,300,95);
+        fill(255,255,255)
+        circle(217,290,20);
+        circle(250,290,20);
+        strokeWeight(0);
+        ellipse(235,320,30,20);
+        fill(245, 222, 179);
+        strokeWeight(0);
+        ellipse(235,313,30,15);
+        strokeWeight(3.5);
+        fill(255,255,255);
+        
+        //Eyes
+        strokeWeight(6);
+        point(eyesX,eyesY);
+        eyesY+=eyesDirection;
+        if(eyesY >=0 || eyesY <= 270)
+       {
+        eyesDirection *= -1;
+       }
+        point(eyesX2,eyesY2);
+        eyesY2+=eyesDirection2;
+        if(eyesY2 >= 0 || eyesY2 <= 270)
+       {
+        eyesDirection2 *= -1;
+       }
+        
+        //Soccer Ball
+        strokeWeight(3);
+        circle(ballX,ballY,diameter)
+        circle(ballX, ballY, 25)
+        ballX+=ballDirection;
+        if(ballX >= 500)
+        {
+         movement *= -1.5;
+        }
+        if(ballX <=0)
+        movement *= -0.5;
+        ballX += movement;
+    
+        ellipse(x, y, r*2, r*2);
+         x += xspeed;
+         y += yspeed;
+        if (x > width - r || x < r) {
+         xspeed = -xspeed;
+         }
+        if (y > height - r || y < r) {
+        yspeed = -yspeed;
+        }
+        
+        //Text
+        textSize(size);
+        size+= sizeDirection;
+        count++;
+        if(count > 5)
+        {
+            sizeDirection *=-1;
+            count = 0;
+        }
+        text("Soocer in the Park", 185,25);
+    
+    }
+
+      
+
+    </script>
+    
+    </head>    
+        <body>
+
+        </body>
+
+
+</html>
