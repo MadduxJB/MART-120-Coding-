@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+    <head>
+        <title>Week 11 Assignment</title>
+<script src="https://cdn.jsdelivr.net/npm/p5@1.11.1/lib/p5.min.js"></script>
+
+<script>
+    //Varibles
+
+    //Character 
+    var characterX = 100;
+    var characterY = 100;
+    var characterDiamter = 40;
+    var caracterXSpeed;
+    var characterYSpeed;
+
+    //Key Codes
+    var x = 100;
+    var w = 87; 
+    var s = 83;
+    var a = 65;
+    var d = 68;
+
+    //Obstacles 
+    var OBX = 45;
+    var OBY = 60;
+    var OBXSpeed;
+    var OBYSpeed;
+
+    var OBX2 = 25;
+    var OBY2 = 360;
+    var OBXSpeed2;
+    var OBYSpeed2;
+
+    //Mouse Obstacle
+    var mouseShapeX; 
+    var mouseShapeY; 
+
+function setup()
+{
+    createCanvas(450, 550);
+    OBXSpeed = Math.floor(Math.random() * (Math.floor(Math.random() * 3)) + 1);
+    OBYSpeed = Math.floor(Math.random() * (Math.floor(Math.random() * 3)) + 1);
+}    
+
+function draw()
+{
+    //Background&Borders
+    createBorders();
+
+    //Character
+    createCharacter();
+
+     //Character Movment
+    characterMovment();
+    
+    //Mouse Character
+    createMouseCharacter();
+
+   //Obstcales
+   createObstacles();
+
+   //Obstacle Speed
+   obstacleSpeed();
+    
+   //Obstcale Movment and Boundaries 
+   OBmovement();
+
+   //Exit
+   createExit();
+
+   //You Win!!
+   displayVictoryMessage();
+}
+   
+    //Functions
+
+    function mouseClicked()
+    {
+        rect(mouseShapeX,mouseShapeY,25,25)
+    }
+
+    function createBorders()
+    {
+        background(400,100,400);
+        fill(153,0,153);
+        rect(0,0,450,10);
+        rect(0,0,10,550);
+        rect(440,0,10,550);
+        rect(0,540,170,10);
+        rect(260,540,210,10);
+    }
+
+    function mouseClicked()
+   {
+        mouseShapeX = mouseX;
+        mouseShapeY = mouseY;
+   }
+
+   function createCharacter()
+   {
+        fill(102,255,255);
+        circle(characterX,characterY,characterDiamter);
+   }    
+        
+   function characterMovment()
+    {
+    if(keyIsDown(w))
+    {
+        characterY -= 7;   
+    }
+    if(keyIsDown(s))
+    {
+        characterY += 7;   
+    }
+    if(keyIsDown(a))
+    {
+        characterX -= 7;   
+        console.log("movement: " + characterX);
+    }
+    if(keyIsDown(d))
+    {
+        characterX += 7;   
+    } 
+   }
+
+   function OBmovement()
+   {
+        OBX += OBXSpeed;
+        OBY += OBYSpeed;
+        
+        OBX2 += OBXSpeed2;
+        OBY2 += OBYSpeed2;
+
+        if(OBX > width)
+    {
+            OBX=0;
+    }
+
+        if(OBX < 0)
+    {
+            OBX= width;
+    }
+
+        if(OBY > height)
+    {
+            OBY = 0;
+    }
+        
+        if(OBY < 0)
+    {
+            OBY = height;
+    }
+        
+        if(OBX2 > width)
+    {
+            OBX2=0;
+    }
+
+        if(OBX2 < 0)
+    {
+            OBX2= width;
+    }
+
+        if(OBY2 > height)
+    {
+            OBY2 = 0;
+    }
+        
+        if(OBX2 < 0)
+    {
+            OBY2 = height;
+    }
+   }
+   
+    function createObstacles()
+    {
+        fill(16,350,10)
+        circle(OBX, OBY, 65)
+        if(x <= 300)
+         {
+          x+=10;
+         }
+        else
+         {
+          x-=20;
+         }
+        fill(250,0,25)
+        rect(OBX2, OBY2, 50, 75)
+    }
+
+    function obstacleSpeed()
+    {
+        OBXSpeed = Math.floor(Math.random() * (Math.floor(Math.random() * 3)) + 1);
+        OBYSpeed = Math.floor(Math.random() * (Math.floor(Math.random() * 3)) + 1);
+        
+        OBXSpeed2 = Math.floor(Math.random() * (Math.floor(Math.random() * 3)) + 1);
+        OBYSpeed2 = Math.floor(Math.random() * (Math.floor(Math.random() * 3)) + 1);
+    
+    }
+
+    function createExit()
+    {
+        fill(140,0,0)
+        textSize(25);
+        text("EXIT!", width-265, height -2)
+    }
+
+    function displayVictoryMessage()
+    {
+        if(characterX > width-265 && characterY > height -2)
+      {
+        fill(0);
+        stroke(5);
+        textSize(26);
+        text("You Win!", width/2-50, height/2-50);
+      }
+    }
+
+    function createMouseCharacter()
+    {
+        fill(20,20,250);
+        circle(mouseShapeX, mouseShapeY, 50);
+    }
+
+    function mouseClicked()
+    {
+        mouseShapeX = mouseX;
+        mouseShapeY = mouseY;
+    }
+
+</script>
+        </head>
+    <body>
+    </body>
+</html>
