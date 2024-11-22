@@ -1,6 +1,6 @@
 <!DOCTYPE html>
     <head>
-        <title>Week 12 Assignment</title>
+        <title>Week 13 Assignment</title>
 <script src="https://cdn.jsdelivr.net/npm/p5@1.11.1/lib/p5.min.js"></script>
 
 <script>
@@ -21,15 +21,15 @@
     var d = 68;
 
     //Obstacles 
-    var OBX = 45;
-    var OBY = 60;
-    var OBXSpeed;
-    var OBYSpeed;
+    var shapeX = 45;
+    var shapeY = 60;
+    
+    var shapeXs = [];
+    var shapeYs = [];
+    var diameters = [];
 
-    var OBX2 = 25;
-    var OBY2 = 360;
-    var OBXSpeed2;
-    var OBYSpeed2;
+    var shapeXSpeeds = [];
+    var shapeYSpeeds = [];
 
     //Mouse Obstacle
     var mouseShapeX; 
@@ -38,12 +38,19 @@
 function setup()
 {
     createCanvas(450, 550);
-    OBXSpeed = Math.floor(Math.random() * (Math.floor(Math.random() * 3)) + 1);
-    OBYSpeed = Math.floor(Math.random() * (Math.floor(Math.random() * 3)) + 1);
+    for (var i = 0; i < 8; i++){
+   shapeXSpeeds[i] = Math.floor(Math.random() * (Math.floor(Math.random() * 5)) +1);
+   shapeYSpeeds[i] = Math.floor(Math.random() * (Math.floor(Math.random() * 5)) +1);
+
+   shapeXs[i] = getRandomNumber(450);
+   shapeYs[i] = getRandomNumber(600);
+   diameters[i] = getRandomNumber(45);
+    }
 }    
 
 function draw()
 {
+    for (var i = 0; i < shapeXs.length; i++)
     //Background&Borders
     createBorders();
 
@@ -57,13 +64,34 @@ function draw()
     createMouseCharacter();
 
    //Obstcales
-   createObstacles();
-
-   //Obstacle Speed
-   obstacleSpeed();
+   fill(350,10,16);
+   for (var i = 0; i < shapeXs.length; i++)
+    {
+    circle(shapeXs[i], shapeYs[i], diameters[i]);
     
-   //Obstcale Movment and Boundaries 
-   OBmovement();
+    //Obstacle Speed
+    shapeXSpeeds[i] = Math.floor(Math.random() * (Math.floor(Math.random() * 5)) +1);
+    shapeYSpeeds[i] = Math.floor(Math.random() * (Math.floor(Math.random() * 5)) +1);
+    
+     //Obstcale Movment and Boundaries 
+    shapeXs[i] += shapeXSpeeds[i];
+    shapeYs[i] += shapeYSpeeds[i];
+    
+    if (shapeXs[i] > width) {
+        shapeXs[i] = 0;
+     }
+    if (shapeXs[i] < 0) {
+        shapeXs[i] = width;
+     }
+    if (shapeYs[i] > height) {
+        shapeYs[i] = 0;
+     }
+    if (shapeYs[i] < 0) {
+    shapeYs[i] = height;
+     }
+   
+    }
+    
 
    //Exit
    createExit();
@@ -123,81 +151,6 @@ function draw()
     } 
    }
 
-   function OBmovement()
-   {
-        OBX += OBXSpeed;
-        OBY += OBYSpeed;
-        
-        OBX2 += OBXSpeed2;
-        OBY2 += OBYSpeed2;
-
-        if(OBX > width)
-    {
-            OBX=0;
-    }
-
-        if(OBX < 0)
-    {
-            OBX= width;
-    }
-
-        if(OBY > height)
-    {
-            OBY = 0;
-    }
-        
-        if(OBY < 0)
-    {
-            OBY = height;
-    }
-        
-        if(OBX2 > width)
-    {
-            OBX2=0;
-    }
-
-        if(OBX2 < 0)
-    {
-            OBX2= width;
-    }
-
-        if(OBY2 > height)
-    {
-            OBY2 = 0;
-    }
-        
-        if(OBX2 < 0)
-    {
-            OBY2 = height;
-    }
-   }
-   
-    function createObstacles()
-    {
-        fill(16,350,10)
-        circle(OBX, OBY, 65)
-        if(x <= 300)
-         {
-          x+=10;
-         }
-        else
-         {
-          x-=20;
-         }
-        fill(250,0,25)
-        rect(OBX2, OBY2, 50, 75)
-    }
-
-    function obstacleSpeed()
-    {
-        OBXSpeed = Math.floor(Math.random() * (Math.floor(Math.random() * 3)) + 1);
-        OBYSpeed = Math.floor(Math.random() * (Math.floor(Math.random() * 3)) + 1);
-        
-        OBXSpeed2 = Math.floor(Math.random() * (Math.floor(Math.random() * 3)) + 1);
-        OBYSpeed2 = Math.floor(Math.random() * (Math.floor(Math.random() * 3)) + 1);
-    
-    }
-
     function createExit()
     {
         fill(140,0,0)
@@ -226,6 +179,11 @@ function draw()
     {
         mouseShapeX = mouseX;
         mouseShapeY = mouseY;
+    }
+
+    function getRandomNumber(number)
+    {
+        return Math.floor(Math.random() * number) + 10;
     }
 
 </script>
